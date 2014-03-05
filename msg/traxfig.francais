@@ -1,0 +1,41 @@
+avertissement : <%s> mauvais argument
+
+avertissement : pas de dessin de pions indiquâ
+
+avertissement : pas de fichier de sortie indiquâ
+
+avertissement : <%s> argument inconnu
+
+avertissement : argument <%s> ignorâ
+
+avertissement : pas de fichier de messages indiquâ
+
+(%s coup illâgal) 
+
+(%s coup non autorisâ : cas des 3 entrâes de la mäme couleur) 
+
+traxfig [-v][-ps][-n][-l <messages>][-f <format>][-o { '=' | <fichier sortie> }]
+ [ <fichier entrâe> | <sâquence de coups> ]
+-v                   : commentaires
+-ps                  : sortie postcript (pas de commentaires)
+-n                   : le coup  est prâcâdâ d'un nombre
+-f <format>          : format de dessin des pions
+-o =                 : sortie vers le fichier <fichier entrâe>.out ou
+                       traxfig.out
+-o <fichier sortie>  : sortie vers le fichier <fichier sortie>
+<se'quence de coups> : ex. "A1S 1AR B1U"
+-l <messages>        : fichier des messages d'erreurs (pour d'autres langues)
+-a                   : tous les pions sont numârotâs avec le fichier format
+                       numbered.tfm
+
+traxfig, v:2.11, 20/09/1994, par Thierry Grellier, merci Ä
+Uwe G. Wilhelm et Richard Rognlie pour la sortie PostScript
+
+%s $
+
+.
+
+Coups dâtectâs dans %s : 
+
+erreur : <%s> n'a pas pu ätre ouvert
+

@@ -1,0 +1,5 @@
+#!/bin/csh
+tar cf traxfig.tar src install.traxfig tfm/* readme.traxfig traxSkel.ps traxfig.cfg msg/*
+gzip -q traxfig.tar
+uuencode traxfig.tar.gz traxfig.tar.gz > traxfig.uue
+

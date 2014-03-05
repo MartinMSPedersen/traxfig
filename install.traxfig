@@ -1,0 +1,95 @@
+#!/bin/csh
+
+unalias rm
+unalias cd
+
+echo '#ifndef __TRAXFIG' > src/traxfig.h
+echo '#define __TRAXFIG' >> src/traxfig.h
+echo ' ' >> src/traxfig.h
+echo '/* change the PATH to your own one */' >> src/traxfig.h
+echo '#define PATH "'$cwd'/"' >> src/traxfig.h
+echo 'void terminate(void);' >> src/traxfig.h
+echo 'int main(int argc, char *argv[]);' >> src/traxfig.h
+echo ' ' >> src/traxfig.h
+echo 'extern char *game_name; ' >> src/traxfig.h
+echo 'extern char *black_name; ' >> src/traxfig.h
+echo 'extern char *white_name; ' >> src/traxfig.h
+echo '#endif' >> src/traxfig.h
+
+cd src
+
+if (-e Makefile) then
+	make clean
+endif
+
+set CC=gcc
+
+echo -n "compiler = $CC (y/n) ?"
+if ($< == "n") then
+	echo -n "name of compiler = "
+	set CC=$<
+endif
+
+echo '# need a ansi C compiler ' > Makefile
+echo "CC = $CC " >> Makefile
+echo ' ' >> Makefile
+#echo '.SILENT: ' >> Makefile
+#echo ' ' >> Makefile
+echo 'traxfig : traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o' >> Makefile
+echo '	echo ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -o traxfig traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o' >> Makefile
+echo '	echo "Have you thought of changing path in traxfig.h ?" ' >> Makefile
+echo ' ' >> Makefile
+echo 'traxfig.o: traxfig.h messages.h move.h parse.h config.h print.h psoutput.h htmloutput.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c traxfig.c ' >> Makefile
+echo ' ' >> Makefile
+echo 'psoutput.o: psoutput.h traxfig.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c psoutput.c ' >> Makefile
+echo ' ' >> Makefile
+echo 'htmloutput.o: htmloutput.h traxfig.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c htmloutput.c ' >> Makefile
+echo ' ' >> Makefile
+echo 'config.o: traxfig.h config.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c config.c ' >> Makefile
+echo ' ' >> Makefile
+echo 'messages.o: messages.h traxfig.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c messages.c ' >> Makefile
+echo ' ' >> Makefile
+echo 'move.o: move.h ' >> Makefile
+echo '	echo -n ... ' >> Makefile
+echo '	$(CC) $(CFLAGS) -c move.c' >> Makefile
+echo ' ' >> Makefile
+echo 'parse.o: parse.h ' >> Makefile
+echo '	echo -n ...' >> Makefile
+echo '	$(CC) $(CFLAGS) -c parse.c' >> Makefile
+echo ' ' >> Makefile
+echo 'print.o: traxfig.h print.h move.h' >> Makefile
+echo '	echo -n ...' >> Makefile
+echo '	$(CC) $(CFLAGS)  -c print.c' >> Makefile
+echo ' ' >> Makefile
+echo 'clean:' >> Makefile
+echo '	rm -f traxfig core *.o' >> Makefile
+echo ' ' >> Makefile
+
+echo -n 'Debug option on (y/n) ?'
+if ($< == "y") then
+	make CFLAGS="-g -DDEBUG"
+else
+	make CFLAGS="-O"
+endif
+
+if (-e ../traxfig) then
+	rm ../traxfig 
+endif
+
+mv traxfig ..
+cd ..
+
+echo "Yes I have \!"
+echo "installation over"
+ 

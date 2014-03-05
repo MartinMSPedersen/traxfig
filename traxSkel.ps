@@ -1,0 +1,227 @@
+%!PS-Adobe
+
+@ size = small, medium, big
+
+dup
+/small eq {
+	/fontSize 6 def
+	/boxWidth 34 def
+	/lineWidth 5 def
+	/shadowWidth 1 def
+	/boxDistance 2 def
+	pop
+} {
+	/medium eq {
+		/fontSize 9 def
+		/boxWidth 50 def
+		/lineWidth 7 def
+		/shadowWidth 2 def
+		/boxDistance 3 def
+	} {
+		/fontSize 12 def
+		/boxWidth 68 def
+		/lineWidth 10 def
+		/shadowWidth 3 def
+		/boxDistance 4 def
+	} ifelse
+} ifelse
+	
+% /boxWidth 68 def			% the size of one tile
+% /lineWidth 10 def			% the width of the line on the tile
+% /shadowWidth 3 def		% the thickness of the tile (just to make it
+							% look nicer)
+% /boxDistance 4 def 		% how far are two tiles apart... should be
+							% greater than shadowWidth
+
+/Times-Roman findfont fontSize scalefont setfont
+
+/blackGrayValue 0 def
+/whiteGrayValue 1 def
+/backgroundGrayValue 2 3 div def
+/shadowGrayValue 0 def
+
+/halfBoxWidth boxWidth 2 div def
+/halfLineWidth lineWidth 2 div def
+/entireBoxWidth boxWidth boxDistance add def
+/negHalfLineWidth halfLineWidth neg def
+/hbwm1	halfBoxWidth 1 sub def
+/negHalfBoxWidth halfBoxWidth neg def
+/nhbwm1 hbwm1 neg def
+
+/xPos {
+	entireBoxWidth mul
+} def
+
+/yPos {
+	entireBoxWidth neg mul
+} def
+
+
+/fillbox { % stack: grayvalue
+	setgray fill 
+} def
+
+/box {
+	newpath
+		halfBoxWidth halfBoxWidth moveto
+		halfBoxWidth negHalfBoxWidth lineto
+		negHalfBoxWidth negHalfBoxWidth lineto
+		negHalfBoxWidth halfBoxWidth lineto
+	closepath
+	backgroundGrayValue fillbox
+	move 0 ne {
+		gsave
+			% negHalfBoxWidth boxDistance add shadowWidth add
+			% halfBoxWidth boxDistance sub shadowWidth sub fontSize sub moveto
+			% blackGrayValue setgray move show 
+			negHalfBoxWidth boxDistance add 
+			halfBoxWidth boxDistance sub fontSize sub moveto
+			move 0 lt {
+				whiteGrayValue setgray move neg 3 string cvs show
+			} {
+				blackGrayValue setgray move 3 string cvs show
+			} ifelse 
+		grestore
+	} if
+} def
+
+/shadowBox {
+	gsave 
+		1 1 shadowWidth {
+			-1 -1 translate
+			newpath
+				halfBoxWidth halfBoxWidth moveto
+				halfBoxWidth negHalfBoxWidth lineto
+				negHalfBoxWidth negHalfBoxWidth lineto
+				negHalfBoxWidth halfBoxWidth lineto
+			closepath
+			shadowGrayValue fillbox
+		} for
+	grestore
+} def
+
+/angle {
+	newpath
+		negHalfLineWidth hbwm1 moveto
+		halfLineWidth hbwm1 lineto
+		hbwm1 hbwm1 hbwm1 halfLineWidth sub 180 270 arc
+		hbwm1 negHalfLineWidth lineto
+		hbwm1 hbwm1 hbwm1 halfLineWidth add 270 180 arcn
+	closepath
+} def
+
+/line {
+	newpath
+		nhbwm1 halfLineWidth moveto
+		hbwm1 halfLineWidth lineto
+		hbwm1 negHalfLineWidth lineto
+		nhbwm1 negHalfLineWidth lineto
+	closepath
+} def
+
+/trxBL {
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		angle 
+		blackGrayValue fillbox
+		180 rotate
+		angle
+		whiteGrayValue fillbox
+	grestore
+} def
+
+/trxTL {
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		270 rotate
+		angle 
+		blackGrayValue fillbox
+		180 rotate
+		angle
+		whiteGrayValue fillbox
+	grestore
+} def
+
+/trxBR { 
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		90 rotate
+		angle 
+		blackGrayValue fillbox
+		180 rotate
+		angle
+		whiteGrayValue fillbox
+	grestore
+} def
+
+/trxTR { 
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		180 rotate
+		angle 
+		blackGrayValue fillbox
+		180 rotate
+		angle
+		whiteGrayValue fillbox
+	grestore
+} def
+
+/trxH {
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		90 rotate
+		line
+		blackGrayValue fillbox
+		90 rotate
+		line
+		whiteGrayValue fillbox
+	grestore
+} def
+
+/trxV {
+	moveto
+	/move exch def
+	gsave 
+		currentpoint translate
+		shadowBox
+		box
+		line
+		blackGrayValue fillbox
+		shadowGrayValue fillbox
+		90 rotate
+		line
+		whiteGrayValue fillbox
+	grestore
+} def
+
+%50 700 translate
+50 550 translate
+
+@ tiles
+
+/Times-Roman findfont 15 scalefont setfont
+0 200 translate
+
+@ text
+
+showpage

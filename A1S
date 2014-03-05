@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#traxfig -p -a A1S $* | ghostview - &
+
+trap "rm -f /tmp/traxfig.$$" 2
+
+traxfig -p -a A1S $* >/tmp/traxfig.$$
+gs /tmp/traxfig.$$
+
+rm -f /tmp/traxfig.$$
+
+exit 0
+exit 0

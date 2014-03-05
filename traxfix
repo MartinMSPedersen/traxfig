@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cmd="traxfig "
+for f in $@
+do
+  index=$((${#f}-1))
+  case ${f:$index} in 
+    /) 
+      cmd="$cmd $f"
+      ;;
+    +) 
+      cmd="$cmd $f"
+      ;;
+    *)
+      cmd="$cmd $f\\\\"
+      ;;
+   esac 
+done
+echo $cmd

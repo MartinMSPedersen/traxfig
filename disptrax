@@ -1,0 +1,7 @@
+#!/bin/sh
+
+MOVES=
+while [ $# -ne 0 ]; do
+	MOVES="$MOVES $1"; shift
+	traxfig -a -p $MOVES | lpr -h
+done
