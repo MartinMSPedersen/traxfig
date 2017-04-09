@@ -5,6 +5,7 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "traxfig.h"
 #include "move.h"
 
