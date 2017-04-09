@@ -125,7 +125,8 @@ void pr_print_area(FILE *output, GAME_AREA *ga, int all_numbered)
 				}
 			}
 			else
-				fprintf(output, " ");
+				if ((w + 'A' > 'Z') && ( tw == 0)) ; // skip
+				else { fprintf(output, " "); }
 	}
 	fprintf(output,"\n");
 
