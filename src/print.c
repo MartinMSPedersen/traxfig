@@ -117,8 +117,13 @@ void pr_print_area(FILE *output, GAME_AREA *ga, int all_numbered)
 	fprintf(output,"    ");
 	for (w = 0; w < ga->width; w++) {
 		for (tw = 0 ; tw < tile_width -1 ; tw++)
-			if (tw == tile_width/2)
-				fprintf(output, "%c", w+'A');
+			if (tw == tile_width/2) {
+				if (w + 'A' > 'Z') { 
+					fprintf(output,"A%c", w+2*'A'-'Z'-1);
+				} else {
+					fprintf(output, "%c", w+'A');
+				}
+			}
 			else
 				fprintf(output, " ");
 	}
