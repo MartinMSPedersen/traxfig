@@ -1,5 +1,6 @@
 # need a ansi C compiler 
 CC = gcc 
+CFLAGS = -Wall -Werror
  
 traxfig : traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o
 	echo ... 

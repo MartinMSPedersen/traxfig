@@ -55,7 +55,7 @@ static void displayTitle(FILE *outP, int init)
 static void displayHeader(FILE *outP, int init)
 {
 	if (init)
-		fprintf(outP, "Trax\n", game_name);
+		fprintf(outP, "Trax\n");
 	else
 		fprintf(outP, "Game %s\n", game_name);
 }
@@ -102,7 +102,6 @@ static void displayBoard(FILE *outP, GAME_AREA *ga, int has_table)
 				if (up != EMPTY) count++;
 				if (down != EMPTY) count++;
 				if (count > 0) {
-					int tu,td,tl,tr,ts,tc;
 					if (i==0 && j<0)
 						sprintf(pos, "1A");
 					else {
@@ -118,12 +117,6 @@ static void displayBoard(FILE *outP, GAME_AREA *ga, int has_table)
 								'A'+i%26,
 								jj);
 					}
-					tu=td=tl=tr=ts=tc=1;
-					if (down != EMPTY || up != EMPTY)
-						tu = td = 0;
-					if (left != EMPTY || right != EMPTY)
-						tl = tr = 0;
-					if (count == 1) tc = 0;
 #if 0					
 					if (tl) fprintf(outP, "%sL<BR>",pos);
 					if (tr) fprintf(outP, "%sR<BR>",pos);

@@ -64,7 +64,6 @@ static void displayMoves(FILE *outP, char ** inv, int inc)
 	int i;
 	int xPos = 0;
 	int yPos = 1;
-	int xIncr = 100;
 
 
 	fprintf(outP, "0 0 moveto (%s) show\n 75 0 moveto (%s) show\n",
