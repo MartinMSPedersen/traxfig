@@ -2,7 +2,8 @@
 #define __TRAXFIG
  
 /* change the PATH to your own one */
-#define PATH "/home/tusk/traxfig/"
+#define PATH "/opt/traxfig/"
+
 void terminate(void);
 int main(int argc, char *argv[]);
  
