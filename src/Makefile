@@ -2,12 +2,12 @@
 CC = gcc 
 CFLAGS = -Wall -Werror
  
-traxfig : traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o
+traxfig : traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o slugbugblueoutput.o
 	echo ... 
-	$(CC) $(CFLAGS) -o traxfig traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o
+	$(CC) $(CFLAGS) -o traxfig traxfig.o config.o messages.o move.o parse.o print.o psoutput.o htmloutput.o slugbugblueoutput.o
 	echo "Have you thought of changing path in traxfig.h ?" 
  
-traxfig.o: traxfig.h messages.h move.h parse.h config.h print.h psoutput.h htmloutput.h 
+traxfig.o: traxfig.h messages.h move.h parse.h config.h print.h psoutput.h htmloutput.h slugbugblueoutput.h
 	echo -n ... 
 	$(CC) $(CFLAGS) -c traxfig.c 
  
