@@ -2,7 +2,7 @@
 #define __TRAXFIG
  
 /* change the PATH to your own one */
-#define PATH "/opt/traxfig/"
+#define PATH "/usr/local/share/traxfig/"
 
 void terminate(void);
 int main(int argc, char *argv[]);

@@ -13,6 +13,7 @@
 #include "print.h"
 #include "psoutput.h"
 #include "htmloutput.h"
+#include "slugbugblueoutput.h"
 
 /*******************************************************************/
 
@@ -33,6 +34,7 @@
 #define IS_INTERACTIVE  (1<<11)
 #define HTML_INIT       (1<<12)
 #define HAS_TABLE       (1<<13)
+#define SLUGBUGBLUE     (1<<14)
 
 #define MAX_LEN_MOVE    10
 #define MAX_MOVE        80
@@ -182,6 +184,8 @@ static int do_switches(/* in/out */ int *argc, /* in */ char *argv[])
 				case 'u':
 					flags |= HTML;
 					break;
+        case 's':
+          flags |= SLUGBUGBLUE;
 				case 'i':
 					flags |= IS_INTERACTIVE;
 					break;
@@ -345,6 +349,8 @@ int main(int argc, char *argv[])
 	else if (flags & HTML)
 		uw_htmloutput(f_out, mv_get_area(), moves, nb_moves, flags & IS_INTERACTIVE,
                               flags & HAS_TABLE, flags & HTML_INIT);
+  else if (flags & SLUGBUGBLUE) 
+		uw_slugbugblueoutput(f_out, mv_get_area());
 	else
 	{
 		pr_init(flags & CUSTOM_TILES ? custom_tiles : cfg->default_format);		
