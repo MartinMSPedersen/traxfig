@@ -1,3 +1,5 @@
+The base of this code is very old and really needs to be updated to modern C.
+
 TRAXFIG:
 
 Traxfig is a filter program to have a display of a trax game. This display
@@ -104,6 +106,10 @@ version 2.09
 version 2.10
 	Minor changes to distinguish played tiles from forced tiles when
 	they are numbered.
+	
+version 2.11
+	Add -s output format to output in slugbugblue format. Made by Martin M. S. Pedersen
+	
 
 version 2.11
 	Improvement of postscript output by Richard.
