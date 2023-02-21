@@ -108,8 +108,8 @@ version 2.10
 	they are numbered.
 	
 version 2.11
+	Improvement of postscript output by Richard.
+
+version 2.12
 	Add -s output format to output in slugbugblue format. Made by Martin M. S. Pedersen
 	
-
-version 2.11
-	Improvement of postscript output by Richard.
